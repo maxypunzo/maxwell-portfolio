@@ -5,7 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maxwell Punzo | Full-Stack Developer</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+html {
+    scroll-behavior: smooth;
+  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+</style>
+
 </head>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fadeIn');
+      }
+    });
+  });
+
+  document.querySelectorAll('.fade-section').forEach(section => {
+    section.classList.add('opacity-0'); // initial state
+    observer.observe(section);
+  });
+  document.querySelector("form").addEventListener("submit", function () {
+    alert("Message sent! Thank you for reaching out.");
+  });
+</script>
+
 <body class="bg-gray-100 text-gray-900">
   <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -22,7 +53,7 @@
       </p>
     </section>
 
-    <section class="mb-12">
+    <section class="mb-12 fade-section">
       <h2 class="text-2xl font-semibold mb-4">My Services</h2>
       <ul class="list-disc list-inside space-y-2">
         <li>REST API Development using Java Spring Boot</li>
@@ -33,7 +64,7 @@
       </ul>
     </section>
 
-    <section class="mb-12">
+    <section class="mb-12 fade-section">
       <h2 class="text-2xl font-semibold mb-4">Portfolio</h2>
       <p>Explore my work on GitHub and my personal project site:</p>
       <ul class="mt-2 text-blue-600 list-disc list-inside">
@@ -42,22 +73,22 @@
       </ul>
     </section>
 
-    <section>
+    <section class="fade-section">
       <h2 class="text-2xl font-semibold mb-4">Contact</h2>
-      <form class="space-y-4 max-w-lg">
+      <form action="https://formspree.io/f/myzwpkoa" method="POST" class="space-y-4 max-w-lg">
         <div>
           <label for="name" class="block text-sm font-medium">Name</label>
-          <input type="text" id="name" class="mt-1 p-2 w-full border border-gray-300 rounded" />
+          <input type="text" name="name" id="name" required class="mt-1 p-2 w-full border border-gray-300 rounded" />
         </div>
         <div>
           <label for="email" class="block text-sm font-medium">Email</label>
-          <input type="email" id="email" class="mt-1 p-2 w-full border border-gray-300 rounded" />
+          <input type="email" name="email" id="email" required class="mt-1 p-2 w-full border border-gray-300 rounded" />
         </div>
         <div>
           <label for="message" class="block text-sm font-medium">Message</label>
-          <textarea id="message" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded"></textarea>
+          <textarea name="email" required id="message" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded"></textarea>
         </div>
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Send</button>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transform hover:scale-105 transition duration-300 shadow-md hover:shadow-lg">Send</button>
       </form>
     </section>
   </main>
